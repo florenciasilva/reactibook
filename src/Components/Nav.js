@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SignedIn from './SignedIn';
 import SignedOut from './SignedOut';
+import styled from 'styled-components';
 
 const Nav = (props) => {
   const { auth } = props;
   const links = auth.uid ? <SignedIn /> : <SignedOut />;
   return (
     <div>
-      <Navbar brand={<Link to="/feed">Reactibook</Link>} right>
+      <StyledNavBar brand={<StyledLink to="/feed">Reactibook</StyledLink>} right>
         <NavItem> { links }</NavItem>
-      </Navbar>
+      </StyledNavBar>
     </div>
   );
 };
@@ -23,5 +24,16 @@ const mapStateToProps = (state) => {
     auth: state.firebase.auth,
   };
 };
+
+
+const StyledNavBar = styled(Navbar) `
+  background-color: #78D1C3;
+  color: white;
+`
+
+const StyledLink = styled(Link) `
+  margin-left: 12%;
+`
+
 
 export default connect(mapStateToProps)(Nav);

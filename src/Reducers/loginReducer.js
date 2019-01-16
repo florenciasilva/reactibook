@@ -5,11 +5,10 @@ const initState = {
 const loginReducer = (state = initState, action) => {
   switch (action.type) {
     case 'AUTH_ERR':
-      console.log('Login Error', action.err.message);
-      alert(action.err.message);
+      console.log('Login Error');
       return {
         ...state,
-        authError: 'Login Failed :c',
+        authError: action.err.message,
       };
     case 'LOGGED_IN':
       console.log('Login Working');

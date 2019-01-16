@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Input, Button} from 'react-materialize';
+import { Row, Input, Button, Col} from 'react-materialize';
 import { connect } from 'react-redux';
 import { signIn } from '../Actions/loginActions';
+import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   state = {
@@ -11,7 +13,6 @@ class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault();
     this.props.signIn(this.state);
-    this.history.push('/feed');
   }
 
   handleChange = (e) => {
@@ -21,22 +22,56 @@ class Login extends Component {
   }
 
   render() {
+    const { authError, auth } = this.props;
+    if (auth.uid) return <Redirect to='/feed' /> 
     return (
-      <div className="container">
+      <StyledDiv>
         <Row>
-          <Input type="email" label="Email" id="email" onChange={this.handleChange} s={7} m={6} l={6} />
-          <Input type="password" label="Password" id="password" onChange={this.handleChange} s={7} m={6} l={6} />
-          <Button onClick={this.handleLogin}> Log in!</Button>
+          <StyledCol s={10} m={12} l={12}>
+          <Input type="email" label="Email" id="email" onChange={this.handleChange} validate required="required"/>
+          <StyledInput type="password" label="Password" id="password" onChange={this.handleChange} validate required="required"/>
+          { authError ? <p>{authError}</p> : null }
+
+          <StyledButton onClick={this.handleLogin} center> Log in!</StyledButton>
+          </StyledCol>
         </Row>
-      </div>
+      </StyledDiv>
     );
   }
 }
+
+const StyledDiv = styled.div `
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledCol = styled(Col) `
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const StyledInput = styled(Input) `
+  margin-top: 5%;
+`;
+
+const StyledButton = styled(Button) `
+  background-color: #78D1C3;
+  margin-top: 5%;
+
+  &:hover {
+    background-color: #2E615E;
+  }
+`;
+
 
 const mapStateToProps = (state) => {
   console.log(state.login.authError);
   return {
     authError: state.login.authError,
+    auth: state.firebase.auth
   };
 };
 
