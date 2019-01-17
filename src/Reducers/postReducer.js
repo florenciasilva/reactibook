@@ -1,18 +1,18 @@
-const initState = {
-  users: [],
-  posts: [
-    {id: 1, content:'Test Test Test', likes: 0, author: null}
-  ]
-};
+const initState = {};
   
-const rootReducer = (state = initState, action) => {
+const postReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'ADD_POST':
+    case 'ADD_SUCCESS':
+    console.log(action.project)
       return {
-        ...state,
-        posts: state.posts,
+        state
       };
-  
+
+    case 'ADD_ERROR':
+     console.log(action.err)
+      return {
+        state
+      }
     case 'DELETE_POST':
       let newPosts = state.posts.filter(post => {
         return action.id !== post.id;
@@ -32,4 +32,4 @@ const rootReducer = (state = initState, action) => {
 };
   
   
-export default rootReducer;
+export default postReducer;
