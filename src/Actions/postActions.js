@@ -10,27 +10,6 @@ export const deletePost = (post) => {
   };
 };
 
-// export const addPost = (post) => {
-//   return (dispatch, getState, {getFirestore}) => {
-//     const firestore = getFirestore();
-//     const profile = getState().firebase.profile;
-//     const authorId = getState().firebase.auth.uid;
-//     firestore.collection('posts').add({
-//       ...post,
-//       authorFirstName: profile.firstName,
-//       authorId: authorId,
-//       createdAt: new Date(),
-//       //isFriendsWith : profile.isFriendsWith,
-//       privacy: post.privacy,
-//     }).then(() => {
-//       dispatch({ type: 'ADD_SUCCESS', post });
-//     }).catch(err => {
-//       dispatch({ type: 'ADD_ERROR' }, err);
-//     });
-//   };
-// };
-
-
 export const addPost = (post) => {
   return (dispatch, getState, {getFirestore}) => {
     const firestore = getFirestore();
@@ -50,26 +29,6 @@ export const addPost = (post) => {
     });
   };
 };
-
-// export const editPost = (post) => {
-//   return (dispatch, {getFirestore}) => {
-//     const firestore = getFirestore();
-//     const update = post.content;
-//     const id = post.id;
-//     const data = {
-//       authorFirstName: post.authorFirstName,
-//       authorId: post.authorId,
-//       content: update,
-//       createdAt: post.createdAt,
-//       //isFriendsWith: post.isFriendsWith,
-//       privacy: post.privacy,
-//     };
-//     console.log(post, data)
-//     firestore.collection('posts').doc(id).set(data).then(() => {
-//       dispatch({type: 'EDIT_SUCCESS', post});
-//     });
-//   };
-// };
 
 export const editPost = (post) => {
   return (dispatch, getState, {getFirestore}) => {

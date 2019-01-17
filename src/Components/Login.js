@@ -23,18 +23,17 @@ class Login extends Component {
 
   render() {
     const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to='/feed' /> 
+    if (auth.uid) {return <Redirect to="/feed" />;} 
     return (
       <StyledDiv>
         <Row>
           <StyledCol s={10} m={12} l={12}>
-          <Input type="email" label="Email" id="email" onChange={this.handleChange} validate required="required"/>
-          <StyledInput type="password" label="Password" id="password" onChange={this.handleChange} validate required="required"/>
-          { authError ? <p>{authError}</p> : null }
-
-          <StyledButton onClick={this.handleLogin} center> Log in!</StyledButton>
+            <Input type="email" label="Email" id="email" onChange={this.handleChange} validate required="required"/>
+            <StyledInput type="password" label="Password" id="password" onChange={this.handleChange} validate required="required"/>
+            <StyledButton onClick={this.handleLogin}> Log in!</StyledButton>
           </StyledCol>
         </Row>
+        { authError ? <p>{authError}</p> : null }
       </StyledDiv>
     );
   }
@@ -45,11 +44,11 @@ const StyledDiv = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
-`
+  flex-direction: column;
+`;
 
 const StyledCol = styled(Col) `
   display: flex;
-  justify-content: center;
   flex-direction: column;
 `;
 
@@ -68,10 +67,9 @@ const StyledButton = styled(Button) `
 
 
 const mapStateToProps = (state) => {
-  console.log(state.login.authError);
   return {
     authError: state.login.authError,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 
