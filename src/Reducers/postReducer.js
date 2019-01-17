@@ -3,7 +3,6 @@ const initState = {};
 const postReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_SUCCESS':
-      console.log(action.project);
       return {
         state,
       };
@@ -25,7 +24,7 @@ const postReducer = (state = initState, action) => {
 
     case 'EDIT_SUCCESS':
       return {
-        state,
+        ...state,
       };
     default:
       return state;

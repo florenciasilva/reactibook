@@ -9,15 +9,15 @@ import TextareaAutosize from 'react-autosize-textarea';
 class AddPost extends Component {
   state = {
     content: '',
-    privacy: 'public',
+    privacy: '',
   }
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
     });
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = () => {
+    console.log(this.state)
     this.props.addPost(this.state);
   }
 
@@ -28,12 +28,13 @@ class AddPost extends Component {
   handlePublic = () => {
     this.setState({ privacy: 'public'});
   }
+
   render() {
     const { auth, profile } = this.props;
     if (!auth.uid) {return <Redirect to="/" />;} 
     return (
       <Row>
-        <Col>
+        <Col s={12} m={12}>
           <StyledCard>
             <TextareaAutosize 
               placeholder={'What are you thinking about, ' + profile.firstName} 
@@ -53,7 +54,7 @@ class AddPost extends Component {
             </StyledDiv>
             <StyledCenterDiv>
               <StyledButton onClick={this.handleSubmit}>
-              Send <Icon>Send</Icon>
+              Send
               </StyledButton>
             </StyledCenterDiv> 
           </StyledCard>
@@ -64,7 +65,6 @@ class AddPost extends Component {
 }
 
 const StyledCard = styled(Card) `
-  width: 35rem;
 `;
 
 const StyledCenterDiv = styled.div `
