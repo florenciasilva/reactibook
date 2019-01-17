@@ -23,9 +23,9 @@ const postReducer = (state = initState, action) => {
         state
       );  
 
-    case 'EDIT_POST':
+    case 'EDIT_SUCCESS':
       return {
-        ...state,
+        state,
       };
     default:
       return state;

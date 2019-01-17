@@ -29,3 +29,24 @@ export const addPost = (post) => {
     });
   };
 };
+
+
+export const editPost = (post) => {
+  console.log(post)
+  return(dispatch, getState, {getFirestore}) => {
+    const firestore = getFirestore();
+    const id = post.id;
+    const update = post.update;
+    const data = {
+      id: id,
+      authorFirstName: post.author,
+      authorId: post.authorId,
+      content: update,
+      createdAt: post.date,
+    }
+    console.log(data)
+    firestore.collection('posts').doc(id).set(data).then(() => {
+      dispatch({type: 'EDIT_SUCCESS', post});
+  });
+  }
+}
