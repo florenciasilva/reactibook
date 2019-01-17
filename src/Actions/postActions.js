@@ -1,7 +1,14 @@
-export const deletePost = (id) => {
-  return {
-    type: 'DELETE_POST',
-    id,
+export const deletePost = (post) => {
+  return (dispatch, getState, {getFirestore}) => {
+    const firestore = getFirestore();
+    firestore.collection('posts').doc(post).delete()
+      .then(() => {
+        console.log('Document successfully deleted!');
+        dispatch({type: 'DELETE_SUCCESS'});
+      }).catch((err) => {
+        console.error('Error removing document: ', err);
+        dispatch({type: 'DELETE_ERR'});
+      });
   };
 };
 

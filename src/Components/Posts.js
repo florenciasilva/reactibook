@@ -1,15 +1,39 @@
 import React from 'react'
 import moment from 'moment';
+import { Row, Col, Card, Button } from 'react-materialize';
+import { deletePost } from '../Actions/postActions';
+import { connect } from 'react-redux';
 
-const Post = ({post}) => {
-  console.log(post.createdAt)
-  return (
-    <div>
-        <p>{post.authorFirstName} said:</p>
-        <p>{post.content}</p>
-        <p>{moment(post.createdAt.toDate()).calendar()}</p>        
-    </div>
-  )
-}
+const Post = ({post, auth, dispatch}) => {
+  console.log(post, auth)
+    if(auth.uid === post.authorId) {
+      return (
+      <Row>
+        <Col>
+        <Card>
+          <p>{post.authorFirstName} said</p>
+          <p>{post.content}</p>
+          <p>{moment(post.createdAt.toDate()).calendar()}</p>    
+          <Button>Edit</Button>
+          <Button onClick={() => {dispatch(deletePost(post.id))}} > Delete</Button>
+        </Card>
+        </Col>
+      </Row>
+      )
+     } else {
+       return (
+        <Row>
+        <Col>
+        <Card>
+          <p>{post.authorFirstName} said</p>
+          <p>{post.content}</p>
+          <p>{moment(post.createdAt.toDate()).calendar()}</p>    
+        </Card>
+        </Col>
+      </Row>
+      )
+    }
+  }
 
-export default Post
+
+export default connect()(Post);
