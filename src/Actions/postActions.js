@@ -3,10 +3,8 @@ export const deletePost = (post) => {
     const firestore = getFirestore();
     firestore.collection('posts').doc(post).delete()
       .then(() => {
-        console.log('Document successfully deleted!');
         dispatch({type: 'DELETE_SUCCESS'});
       }).catch((err) => {
-        console.error('Error removing document: ', err);
         dispatch({type: 'DELETE_ERR'});
       });
   };
@@ -22,6 +20,7 @@ export const addPost = (post) => {
       authorFirstName: profile.firstName,
       authorId: authorId,
       createdAt: new Date(),
+      isFriendsWith : profile.isFriendsWith,
     }).then(() => {
       dispatch({ type: 'ADD_SUCCESS', post });
     }).catch(err => {
@@ -32,8 +31,7 @@ export const addPost = (post) => {
 
 
 export const editPost = (post) => {
-  console.log(post)
-  return(dispatch, getState, {getFirestore}) => {
+  return (dispatch, {getFirestore}) => {
     const firestore = getFirestore();
     const id = post.id;
     const update = post.update;
@@ -43,10 +41,11 @@ export const editPost = (post) => {
       authorId: post.authorId,
       content: update,
       createdAt: post.date,
-    }
-    console.log(data)
+    };
     firestore.collection('posts').doc(id).set(data).then(() => {
       dispatch({type: 'EDIT_SUCCESS', post});
-  });
-  }
-}
+    });
+  };
+};
+
+

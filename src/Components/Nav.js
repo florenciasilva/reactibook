@@ -19,7 +19,6 @@ const Nav = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     auth: state.firebase.auth,
   };
@@ -29,11 +28,11 @@ const mapStateToProps = (state) => {
 const StyledNavBar = styled(Navbar) `
   background-color: #78D1C3;
   color: white;
-`
+`;
 
 const StyledLink = styled(Link) `
   margin-left: 12%;
-`
+`;
 
 
 export default connect(mapStateToProps)(Nav);

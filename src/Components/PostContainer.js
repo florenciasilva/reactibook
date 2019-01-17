@@ -1,16 +1,16 @@
-import React from 'react'
-import Posts from './Posts'
+import React from 'react';
+import Posts from './Posts';
 
-const PostContainer = ({posts, auth}) => {
+const PostContainer = ({ posts, auth, profile }) => {
   return (
     <div>
       { posts && posts.map(posts => {
         return (
-          <Posts post={posts} key={posts.id} auth={auth}/>
-        )
+          <Posts post={posts} key={posts.id} auth={auth} profile={profile}/>
+        );
       })}  
     </div>
-  )
-}
+  );
+};
 
-export default PostContainer
+export default PostContainer;

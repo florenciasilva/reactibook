@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPost } from '../Actions/postActions';
 import { Redirect } from 'react-router-dom';
-import { Col, Row, Card, Button} from 'react-materialize';
+import { Col, Row, Card, Button, Icon } from 'react-materialize';
+import styled from 'styled-components';
+import TextareaAutosize from 'react-autosize-textarea';
 
 class AddPost extends Component {
   state = {
     content: '',
+    privacy: 'public',
   }
   handleChange = (e) => {
     this.setState({
@@ -17,24 +20,77 @@ class AddPost extends Component {
     e.preventDefault();
     this.props.addPost(this.state);
   }
+
+  handleOnlyFriends = () => {
+    this.setState({ privacy: 'onlyFriends'});
+  }
+
+  handlePublic = () => {
+    this.setState({ privacy: 'public'});
+  }
   render() {
     const { auth, profile } = this.props;
     if (!auth.uid) {return <Redirect to="/" />;} 
     return (
       <Row>
         <Col>
-          <Card>
-            <textarea 
+          <StyledCard>
+            <TextareaAutosize 
               placeholder={'What are you thinking about, ' + profile.firstName} 
               id="content" 
               onChange={this.handleChange} />
-            <Button onClick={this.handleSubmit}>Send</Button>
-          </Card>
+            <StyledDiv>
+              <StyledPrivacyButton 
+                right 
+                onClick={this.handleOnlyFriends}>
+                <Icon>group</Icon>
+              </StyledPrivacyButton>
+              <StyledPrivacyButton 
+                right 
+                onClick={this.handlePublic}>
+                <Icon>public</Icon>
+              </StyledPrivacyButton>
+            </StyledDiv>
+            <StyledCenterDiv>
+              <StyledButton onClick={this.handleSubmit}>
+              Send <Icon>Send</Icon>
+              </StyledButton>
+            </StyledCenterDiv> 
+          </StyledCard>
         </Col>
       </Row>
     );
   }
 }
+
+const StyledCard = styled(Card) `
+  width: 35rem;
+`;
+
+const StyledCenterDiv = styled.div `
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledButton = styled(Button) `
+  background-color: #78D1C3;
+  margin-top: 5%;
+  &:hover {
+    background-color: #2E615E;
+  }
+`;
+
+const StyledDiv = styled.div `
+display: flex;
+justify-content: flex-end;
+`;
+
+const StyledPrivacyButton = styled(Button) `
+  background-color: transparent;
+  color: black;
+  box-shadow: 0px 0px 0px transparent;
+
+`;
 
 const mapStateToProps = (state) => {
   return {
