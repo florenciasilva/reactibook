@@ -2,6 +2,12 @@ const initState = {};
 
 const postReducer = (state = initState, action) => {
   switch (action.type) {
+
+    case 'ALL_POSTS_SUCCESS':
+      return {
+        state,
+      };
+
     case 'ADD_SUCCESS':
       return {
         state,

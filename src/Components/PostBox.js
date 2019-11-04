@@ -1,4 +1,6 @@
 import React, { Component }from 'react';
+import { connect } from 'react-redux';
+import { createPost } from '../actions/PostActions';
 
 class PostBox extends Component {
     constructor(){
@@ -16,7 +18,8 @@ class PostBox extends Component {
 
     handleSubmit = () => {
         const content = this.state;
-        fetch('http://localhost:3000/post', {
+        this.props.createPost(content)
+        /*fetch('http://localhost:3000/post', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -25,7 +28,7 @@ class PostBox extends Component {
             body: JSON.stringify(content)
         })
         .then(res => console.log(res))
-        .catch(err => this.setState(err))
+        .catch(err => this.setState(err))*/
     };
 
     render(){
@@ -42,4 +45,10 @@ class PostBox extends Component {
     };
 };
 
-export default PostBox
+const mapDispatchToProps = dispatch => {
+    return {
+      createPost: (content) => dispatch(createPost(content)),
+    };
+  };
+
+export default connect(null, mapDispatchToProps)(PostBox);
