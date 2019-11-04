@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Container, SideNav } from '../styles.js';
 import UserBadge from '../Components/UserBadge';
 import UserFriends from '../Components/UserFriends';
+import PostBox from '../Components/PostBox';
 
 const NewsFeed = () => {
     return (
@@ -11,22 +12,7 @@ const NewsFeed = () => {
                 <UserFriends />
             </SideNav>
             <Container>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-                <p>holi</p>
-
+                <PostBox />
             </Container>
         </Fragment>
     );
