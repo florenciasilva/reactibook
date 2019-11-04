@@ -1,6 +1,3 @@
-
-
-
 export const createPost = (content) => {
     return dispatch => {
         return fetch('http://localhost:3000/post', {
@@ -13,8 +10,25 @@ export const createPost = (content) => {
         })
         .then(res => res.json())
         .then(json => {
-            dispatch({type: 'ALL_POSTS_SUCCESS'})
+            dispatch({type: 'CREATE_POST_SUCCESS'})
         })
-        .catch(err => this.setState(err))
+        .catch(err => dispatch({type: 'ERR_CREATING_POST', err}))
     }
-}
+};
+
+export const getAllPosts = () => {
+    return dispatch => {
+        return fetch('http://localhost:3000/posts', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        })
+        .then(res => res.json())
+        .then(json => {
+            dispatch({type: 'FETCH_ALL_POSTS', json})
+        })
+        .catch(err => dispatch({type: 'ERR_FETCHING_POSTS', err}))
+    };
+};

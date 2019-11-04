@@ -1,23 +1,33 @@
-const initState = {};
+const initState = {
+  posts: []
+};
 
 const postReducer = (state = initState, action) => {
   switch (action.type) {
 
-    case 'ALL_POSTS_SUCCESS':
+    case 'CREATE_POST_SUCCESS':
       return {
         state,
       };
 
-    case 'ADD_SUCCESS':
+    case 'FETCH_ALL_POSTS':
+      console.log(action.json)
       return {
-        state,
-      };
+       ...state, posts: action.json
+    };
 
-    case 'ADD_ERROR':
+    case 'ERR_CREATING_POST':
       console.log(action.err);
       return {
         state,
       };
+
+    case 'ERR_FETCHING_POSTS':
+      console.log(action.err);
+      return {
+        state,
+      }
+
     case 'DELETE_SUCCESS':
       return state.filter(({ id }) => id !== action.id);
 

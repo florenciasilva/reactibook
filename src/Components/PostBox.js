@@ -19,16 +19,7 @@ class PostBox extends Component {
     handleSubmit = () => {
         const content = this.state;
         this.props.createPost(content)
-        /*fetch('http://localhost:3000/post', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            method: 'POST',
-            body: JSON.stringify(content)
-        })
-        .then(res => console.log(res))
-        .catch(err => this.setState(err))*/
+
     };
 
     render(){
@@ -45,10 +36,14 @@ class PostBox extends Component {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+/* const mapDispatchToProps = dispatch => {
     return {
-      createPost: (content) => dispatch(createPost(content)),
+        createPost: (content) => dispatch(createPost(content)),
+      };
     };
+*/
+const mapDispatchToProps = {
+    createPost
   };
 
 export default connect(null, mapDispatchToProps)(PostBox);
