@@ -1,7 +1,7 @@
 import React, { Component }from 'react';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/PostActions';
-
+import { Divider, PostArea, Label, PrimarySend } from '../styles';
 class PostBox extends Component {
     constructor(){
         super();
@@ -25,12 +25,15 @@ class PostBox extends Component {
     render(){
         return (
             <>
-                <h1>Newsfeed</h1>
-                <label htmlFor="post">Create new post</label>
-                <textarea id="post" onChange={this.handleChange}>
-                </textarea>
+                <section style={{width: "40vw", display: "flex", flexDirection:"column"}}>
+                    <h1>Newsfeed</h1>
+                    <Label htmlFor="post">Create new post</Label>
+                    <PostArea id="post" placeholder="create new post" onChange={this.handleChange}>
+                    </PostArea>
 
-                <button onClick={this.handleSubmit}>Enviar</button>
+                    <PrimarySend onClick={this.handleSubmit}>Enviar</PrimarySend>
+                </section>
+                <Divider />
             </>
         );
     };
