@@ -6,12 +6,15 @@ const postReducer = (state = initState, action) => {
   switch (action.type) {
 
     case 'CREATE_POST_SUCCESS':
+      console.log(action.json)
+
       return {
-        state,
+        ...state,
+        posts: [...state.posts, action.json]
       };
 
     case 'FETCH_ALL_POSTS':
-      console.log(action.json)
+      //console.log(action.json)
       return {
        ...state, posts: action.json
     };

@@ -10,7 +10,7 @@ export const createPost = (content) => {
         })
         .then(res => res.json())
         .then(json => {
-            dispatch({type: 'CREATE_POST_SUCCESS'})
+            dispatch({type: 'CREATE_POST_SUCCESS', json})
         })
         .catch(err => dispatch({type: 'ERR_CREATING_POST', err}))
     }
