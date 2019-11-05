@@ -28,7 +28,7 @@ class PostBox extends Component {
                 <section style={{width: "40vw", display: "flex", flexDirection:"column"}}>
                     <h1>Newsfeed</h1>
                     <Label htmlFor="post">Create new post</Label>
-                    <PostArea id="post" placeholder="create new post" onChange={this.handleChange}>
+                    <PostArea id="post" placeholder="create new post" required maxLength={340} onChange={this.handleChange}>
                     </PostArea>
 
                     <PrimarySend onClick={this.handleSubmit}>Enviar</PrimarySend>

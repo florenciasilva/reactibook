@@ -69,7 +69,7 @@ export const DeleteBtn = styled(PrimaryBtn)`
 `
 
 export const Divider = styled.hr`
-    width: 80vw;
+    width: 78.5vw;
     border: 1.5px solid #8d4b60;
     filter: opacity(80%)
 `
@@ -80,9 +80,14 @@ export const PostArea = styled.textarea`
     border-radius: 25px;
     background-color: transparent;
     border: 2px solid #8d4b60;
+    resize: none;
+    text-align: center;
+    color: white;
+    font-size: 1.3rem;
 
     ::placeholder {
         text-align: center;
+        font-size: 1rem;
     }
 `
 
