@@ -30,7 +30,6 @@ class PostBox extends Component {
                     <Label htmlFor="post">Create new post</Label>
                     <PostArea id="post" placeholder="create new post" required maxLength={340} onChange={this.handleChange}>
                     </PostArea>
-
                     <PrimarySend onClick={this.handleSubmit}>Enviar</PrimarySend>
                 </section>
                 <Divider />
@@ -39,12 +38,6 @@ class PostBox extends Component {
     };
 };
 
-/* const mapDispatchToProps = dispatch => {
-    return {
-        createPost: (content) => dispatch(createPost(content)),
-      };
-    };
-*/
 const mapDispatchToProps = {
     createPost
   };

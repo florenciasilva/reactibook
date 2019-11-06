@@ -32,3 +32,21 @@ export const getAllPosts = () => {
         .catch(err => dispatch({type: 'ERR_FETCHING_POSTS', err}))
     };
 };
+
+export const editPost = (post, id) => {
+    return dispatch => {
+        return fetch('http://localhost:3000/edit/' + id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+            body: JSON.stringify({content: post})
+        })
+        .then(res => res.json())
+        .then(json => {
+            dispatch({type: 'EDIT_POST_SUCCESS', json})
+        })
+        .catch(err => dispatch({type: 'ERR_EDIT_POST', err}))
+    };
+}

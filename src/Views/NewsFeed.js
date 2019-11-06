@@ -19,7 +19,6 @@ class NewsFeed extends Component {
 
 
     render(){
-        console.log(this.props.posts)
         return (
             <Fragment>
                 <SideNav>

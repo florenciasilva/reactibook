@@ -57,15 +57,15 @@ export const PrimaryBtn = styled.button`
     color: white;
     border-radius: 25px;
     background-color: palevioletred;
-    width: 6vw;
-    height: 4vw;
+    width: 4.5vw;
+    height: 3.5vw;
     font-size: 1rem;
-`
+    `
 
 export const DeleteBtn = styled(PrimaryBtn)`
     background-color: transparent;
     border: .5px solid white;
-    width: 7vw;
+    width: 6vw;
 `
 
 export const Divider = styled.hr`
@@ -96,7 +96,21 @@ export const Label = styled.label`
 `
 
 export const PrimarySend = styled(PrimaryBtn)`
-    width: 7vw;
+    width: 6vw;
     align-self: flex-end;
     margin-top: 2%;
-    `
+`
+
+export const EditBtn = styled(PrimaryBtn)`
+    filter: opacity(90%)
+`
+
+export const EditInput = styled(PostArea)`
+    width: 20vw;
+    height: 10vh;
+`
+
+export const SendEditBtn = styled(PrimaryBtn)`
+    margin: 2%
+    width: 7vw;
+`

@@ -14,7 +14,6 @@ const postReducer = (state = initState, action) => {
       };
 
     case 'FETCH_ALL_POSTS':
-      //console.log(action.json)
       return {
        ...state, posts: action.json
     };
@@ -40,10 +39,17 @@ const postReducer = (state = initState, action) => {
         state
       );
 
-    case 'EDIT_SUCCESS':
+    case 'EDIT_POST_SUCCESS':
       return {
-        ...state,
+        ...state
+      }
+
+
+    case 'ERR_EDIT_POST':
+      return {
+        state
       };
+
     default:
       return state;
   }
