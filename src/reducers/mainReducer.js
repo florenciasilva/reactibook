@@ -14,6 +14,7 @@ const postReducer = (state = initState, action) => {
       };
 
     case 'FETCH_ALL_POSTS':
+      console.log('holi fetch', state)
       return {
        ...state, posts: action.json
     };
@@ -31,10 +32,10 @@ const postReducer = (state = initState, action) => {
       }
 
     case 'DELETE_SUCCESS':
-      return state.filter(({ id }) => id !== action.id);
+      return state.posts.filter(({ id }) => id !== action.id);
 
     case 'DELETE_ERR':
-      console.log('Error');
+      console.log(action.err.message);
       return (
         state
       );

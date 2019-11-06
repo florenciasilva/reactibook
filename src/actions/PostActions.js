@@ -49,4 +49,24 @@ export const editPost = (post, id) => {
         })
         .catch(err => dispatch({type: 'ERR_EDIT_POST', err}))
     };
+};
+
+export const deletePost = (id) => {
+    return dispatch => {
+        return fetch('http://localhost:3000/delete/' + id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: 'DELETE',
+        })
+        .then(res => res.json())
+        .then(json => {
+            const id = json.id
+            dispatch({type: 'DELETE_SUCCESS', id})
+            dispatch({type: 'FETCH_ALL_POSTS'})
+        })
+        .catch(err => dispatch({type: 'DELETE_ERR', err}))
+    };
+
 }

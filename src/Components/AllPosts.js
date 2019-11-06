@@ -2,18 +2,18 @@ import React, { useState, Fragment} from 'react';
 import moment from 'moment';
 import { Card, Content, Date, PrimaryBtn, Wrapper, DeleteBtn, EditBtn, Divider, EditInput, SendEditBtn } from '../styles';
 import { connect } from 'react-redux';
-import { editPost, getAllPosts } from '../actions/PostActions';
+import { editPost, getAllPosts, deletePost } from '../actions/PostActions';
 
 const AllPosts = (props) => {
     const [ edited, setEditable ] = useState(-1);
     const [ getContent, setContent ] = useState('');
-    const [ showSendBtn, setSendBtn ] = useState(-1)
+    const [ editElements, setEditElements] = useState(-1)
     const [ editStage, setEditStage] = useState(false)
+    const [ deletedPost, setDeletedPost ] = useState(-1)
 
-
-    const handleEdit = (post_id, e, i) => {
+    const handleEdit = (post_id, i) => {
             setEditable(post_id);
-            setSendBtn(i);
+            setEditElements(i);
             setEditStage(true)
     }
 
@@ -22,11 +22,17 @@ const AllPosts = (props) => {
     }
 
     const handleSubmit = (e, id, i) => {
-        setSendBtn(-1);
+        setEditElements(-1);
         props.editPost(getContent, id);
         props.getAllPosts()
     }
 
+    const handleDelete = (id) => {
+        const ask = window.confirm('Are you sure?');
+        if(ask) {
+            props.deletePost(id)
+        }
+    }
 
     if(props.posts) {
     return props.posts.map((post, i) => {
@@ -37,12 +43,12 @@ const AllPosts = (props) => {
                         <p>{post.user}</p>
                         <Date dateTime={post.createdAt}>{moment(post.createdAt).calendar()}</Date>
                     </Wrapper>
-                    <Content style={{display: showSendBtn === i ? 'none' : 'flex'}}>{post.content}</Content>
-                    <EditInput id={i} placeholder={post.content} onChange={handleOnChange} style={{display: showSendBtn === i ? 'flex' : 'none'}} />
-                    <SendEditBtn style={{display: showSendBtn === i ? 'flex' : 'none'}} onClick={(e) => handleSubmit(e, post._id, i)}> Send </SendEditBtn>
+                    <Content style={{display: editElements === i ? 'none' : 'flex'}}>{post.content}</Content>
+                    <EditInput id={i} placeholder={post.content} onChange={handleOnChange} style={{display: editElements === i ? 'flex' : 'none'}} />
+                    <SendEditBtn style={{display: editElements === i ? 'flex' : 'none'}} onClick={(e) => handleSubmit(e, post._id, i)}> Send </SendEditBtn>
                     <Wrapper>
-                        <DeleteBtn>Delete</DeleteBtn>
-                        <EditBtn onClick={(e) => {handleEdit(post._id, e, i)}}>Edit</EditBtn>
+                        <DeleteBtn onClick={() => handleDelete(post._id)}>Delete</DeleteBtn>
+                        <EditBtn onClick={() => handleEdit(post._id, i)}>Edit</EditBtn>
                         <PrimaryBtn>Like</PrimaryBtn>
                     </Wrapper>
                 </Card>
@@ -51,15 +57,17 @@ const AllPosts = (props) => {
         );
     });
     } else {
+      props.getAllPosts()
       return (
-        <p>Loading</p>
+          <p>Loading</p>
       )
     }
 };
 
 const mapDispatchToProps = {
     editPost,
-    getAllPosts
+    getAllPosts,
+    deletePost
 }
 
 export default connect(null, mapDispatchToProps)(AllPosts)
