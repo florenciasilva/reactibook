@@ -1,6 +1,6 @@
 export const createPost = (content) => {
     return dispatch => {
-        return fetch('http://localhost:3000/post', {
+        return fetch('https://reactibook-api.herokuapp.com/post', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export const createPost = (content) => {
 
 export const getAllPosts = () => {
     return dispatch => {
-        return fetch('http://localhost:3000/posts', {
+        return fetch('https://reactibook-api.herokuapp.com/posts', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export const getAllPosts = () => {
 
 export const editPost = (post, id) => {
     return dispatch => {
-        return fetch('http://localhost:3000/edit/' + id, {
+        return fetch('https://reactibook-api.herokuapp.com/edit/' + id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export const editPost = (post, id) => {
 
 export const deletePost = (id) => {
     return dispatch => {
-        return fetch('http://localhost:3000/delete/' + id, {
+        return fetch('https://reactibook-api.herokuapp.com/delete/' + id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
