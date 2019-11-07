@@ -1,8 +1,9 @@
 import React from 'react';
 
 const UserBadge = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
-        <p> Holi Badge </p>
+        <p> Hi {user.username}</p>
     );
 };
 

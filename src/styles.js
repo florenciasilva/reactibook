@@ -8,12 +8,11 @@ export const Container = styled.main`
     width: 79vw;
 `;
 
-export const SideNav = styled.aside`
-    display: flex;
-    align-items: center;
+export const PostContainer = styled.div`
     flex-direction: column;
-    width: 20vw;
-    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+
 `
 
 export const Card = styled.article`
@@ -113,4 +112,7 @@ export const EditInput = styled(PostArea)`
 export const SendEditBtn = styled(PrimaryBtn)`
     margin: 2%
     width: 7vw;
+`
+export const PrivacyWrapper = styled(Wrapper)`
+    justify-content: flex-start
 `

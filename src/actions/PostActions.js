@@ -1,15 +1,16 @@
-export const createPost = (content) => {
+export const createPost = (content, user, privacy) => {
     return dispatch => {
-        return fetch('https://reactibook-api.herokuapp.com/post', {
+        return fetch('http://localhost:3000/post', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             method: 'POST',
-            body: JSON.stringify(content)
+            body: JSON.stringify({content: content, email: user.email, username: user.username, _id: user._id, privacy: privacy, friends: user.friends})
         })
         .then(res => res.json())
         .then(json => {
+            console.log(json)
             dispatch({type: 'CREATE_POST_SUCCESS', json})
         })
         .catch(err => dispatch({type: 'ERR_CREATING_POST', err}))
@@ -18,7 +19,7 @@ export const createPost = (content) => {
 
 export const getAllPosts = () => {
     return dispatch => {
-        return fetch('https://reactibook-api.herokuapp.com/posts', {
+        return fetch('http://localhost:3000/posts', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -35,7 +36,7 @@ export const getAllPosts = () => {
 
 export const editPost = (post, id) => {
     return dispatch => {
-        return fetch('https://reactibook-api.herokuapp.com/edit/' + id, {
+        return fetch('http://localhost:3000/edit/' + id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ export const editPost = (post, id) => {
 
 export const deletePost = (id) => {
     return dispatch => {
-        return fetch('https://reactibook-api.herokuapp.com/delete/' + id, {
+        return fetch('http://localhost:3000/delete/' + id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

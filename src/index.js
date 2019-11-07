@@ -10,7 +10,7 @@ import reducer from './reducers/mainReducer.js';
 
 
 if (process.env.NODE_ENV !== 'production') {
-    var axe = require('react-axe');
+    let axe = require('react-axe');
     axe(React, ReactDOM, 1000);
   }
 

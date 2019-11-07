@@ -1,6 +1,6 @@
-import React, { useState, Fragment} from 'react';
+import React, { useState} from 'react';
 import moment from 'moment';
-import { Card, Content, Date, PrimaryBtn, Wrapper, DeleteBtn, EditBtn, Divider, EditInput, SendEditBtn } from '../styles';
+import { Card, Content, Date, PrimaryBtn, Wrapper, DeleteBtn, EditBtn, Divider, EditInput, SendEditBtn, PostContainer} from '../styles';
 import { connect } from 'react-redux';
 import { editPost, getAllPosts, deletePost } from '../actions/PostActions';
 
@@ -9,7 +9,6 @@ const AllPosts = (props) => {
     const [ getContent, setContent ] = useState('');
     const [ editElements, setEditElements] = useState(-1)
     const [ editStage, setEditStage] = useState(false)
-    const [ deletedPost, setDeletedPost ] = useState(-1)
 
     const handleEdit = (post_id, i) => {
             setEditable(post_id);
@@ -31,29 +30,32 @@ const AllPosts = (props) => {
         const ask = window.confirm('Are you sure?');
         if(ask) {
             props.deletePost(id)
-        }
-    }
+        };
+    };
 
-    if(props.posts) {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (props.posts && user) {
     return props.posts.map((post, i) => {
+        console.log(post, '<- post', user, '<- user')
         return (
-            <Fragment key={post._id}>
-                <Card >
+            <PostContainer style={{display: post.privacy && post.friends !== user.email ? 'none' : 'flex'}} key={post._id}>
+                <Card  >
                     <Wrapper>
-                        <p>{post.user}</p>
+                        <p>{post.username}</p>
                         <Date dateTime={post.createdAt}>{moment(post.createdAt).calendar()}</Date>
                     </Wrapper>
                     <Content style={{display: editElements === i ? 'none' : 'flex'}}>{post.content}</Content>
                     <EditInput id={i} placeholder={post.content} onChange={handleOnChange} style={{display: editElements === i ? 'flex' : 'none'}} />
                     <SendEditBtn style={{display: editElements === i ? 'flex' : 'none'}} onClick={(e) => handleSubmit(e, post._id, i)}> Send </SendEditBtn>
                     <Wrapper>
-                        <DeleteBtn onClick={() => handleDelete(post._id)}>Delete</DeleteBtn>
-                        <EditBtn onClick={() => handleEdit(post._id, i)}>Edit</EditBtn>
+                        <DeleteBtn style={{display: user.email === post.email ? 'flex' : 'none'}} onClick={() => handleDelete(post._id)}>Delete</DeleteBtn>
+                        <EditBtn style={{display: user.email === post.email ? 'flex' : 'none'}} onClick={() => handleEdit(post._id, i)}>Edit</EditBtn>
                         <PrimaryBtn>Like</PrimaryBtn>
                     </Wrapper>
                 </Card>
                 <Divider />
-            </Fragment>
+            </PostContainer >
         );
     });
     } else {

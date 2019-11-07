@@ -1,17 +1,39 @@
 const initState = {
-  posts: []
+  posts: [],
+  user: []
 };
 
 const postReducer = (state = initState, action) => {
   switch (action.type) {
 
     case 'CREATE_POST_SUCCESS':
-      console.log(action.json)
-
       return {
         ...state,
         posts: [...state.posts, action.json]
       };
+
+    case 'CREATE_USER_SUCCESS':
+      return {
+        ...state,
+      }
+
+    case 'LOGIN_USER_SUCCESS':
+      return {
+        ...state,
+      }
+
+    case 'ERR_CREATING_USER':
+      console.log(action.err)
+      return {
+        state
+      }
+
+    case 'ERR_LOGIN_USER':
+      console.log(action.err)
+      return {
+        state
+    }
+
 
     case 'FETCH_ALL_POSTS':
       console.log('holi fetch', state)

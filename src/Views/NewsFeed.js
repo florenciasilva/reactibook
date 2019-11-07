@@ -1,7 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { Container, SideNav } from '../styles.js';
-import UserBadge from '../Components/UserBadge';
-import UserFriends from '../Components/UserFriends';
+import { Container } from '../styles.js';
 import PostBox from '../Components/PostBox';
 import AllPosts from '../Components/AllPosts';
 import { connect } from 'react-redux';
@@ -21,10 +19,6 @@ class NewsFeed extends Component {
     render(){
         return (
             <Fragment>
-                <SideNav>
-                    <UserBadge />
-                    <UserFriends />
-                </SideNav>
                 <Container>
                     <PostBox />
                     <AllPosts posts={this.props.posts} />
