@@ -1,7 +1,7 @@
 import React, { Component }from 'react';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/PostActions';
-import { Divider, PostArea, Label, PrimarySend, DeleteBtn, PrivacyWrapper } from '../styles';
+import { Divider, PostArea, Label, PrimarySend, TransparentBtn, PrivacyWrapper, SRonly } from '../styles';
 import { IoIosGlobe } from 'react-icons/io';
 import { FaUsers } from 'react-icons/fa'
 class PostBox extends Component {
@@ -38,8 +38,8 @@ class PostBox extends Component {
                     <PostArea id="post" placeholder="create new post" required maxLength={340} onChange={this.handleChange}>
                     </PostArea>
                     <PrivacyWrapper>
-                        <DeleteBtn name="public" onClick={this.handlePrivacy}> <IoIosGlobe /> </DeleteBtn>
-                        <DeleteBtn name="friends" onClick={this.handlePrivacy}> <FaUsers /> </DeleteBtn>
+                        <TransparentBtn name="public" onClick={this.handlePrivacy}> <IoIosGlobe /> <SRonly>Post privacy is Public</SRonly> </TransparentBtn>
+                        <TransparentBtn name="friends" onClick={this.handlePrivacy}> <FaUsers /> <SRonly>Post privacy is Friends only</SRonly></TransparentBtn>
                     </PrivacyWrapper>
                     <PrimarySend onClick={this.handleSubmit}>Send</PrimarySend>
                 </section>

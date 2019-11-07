@@ -8,7 +8,7 @@ export const Container = styled.main`
     width: 79vw;
 `;
 
-export const PostContainer = styled.div`
+export const ColumnContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -59,12 +59,14 @@ export const PrimaryBtn = styled.button`
     width: 4.5vw;
     height: 3.5vw;
     font-size: 1rem;
+    margin-top: -2%;
     `
 
-export const DeleteBtn = styled(PrimaryBtn)`
+export const TransparentBtn = styled(PrimaryBtn)`
     background-color: transparent;
     border: .5px solid white;
     width: 6vw;
+    margin: 2%
 `
 
 export const Divider = styled.hr`
@@ -94,13 +96,46 @@ export const Label = styled.label`
     color: #333
 `
 
+export const AuthContainer = styled.main`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+export const Input = styled.input`
+    width: 30vw;
+    height: 3vh;
+    margin: 1%;
+    border-radius: 25px;
+        background-color: transparent;
+        border: 2px solid #8d4b60;
+        resize: none;
+        text-align: center;
+        color: white;
+        font-size: .9rem;
+
+        ::placeholder {
+            text-align: center;
+            font-size: .9rem;
+        }
+`
+
+export const LabelInput = styled.label`
+    font-size: .9rem;
+    margin: 2%;
+    letter-spacing: .1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
 export const PrimarySend = styled(PrimaryBtn)`
     width: 6vw;
     align-self: flex-end;
     margin-top: 2%;
 `
 
-export const EditBtn = styled(PrimaryBtn)`
+export const SecondaryBtn = styled(PrimaryBtn)`
     filter: opacity(90%)
 `
 
@@ -115,4 +150,13 @@ export const SendEditBtn = styled(PrimaryBtn)`
 `
 export const PrivacyWrapper = styled(Wrapper)`
     justify-content: flex-start
+`
+
+export const SRonly = styled.span`
+    color: #333;
+    text-indent: -9999em;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
 `

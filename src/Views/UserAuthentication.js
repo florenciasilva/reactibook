@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Container, PrimaryBtn } from '../styles';
+import { AuthContainer, PrimaryBtn, Divider, LabelInput, Input } from '../styles';
 import { connect } from 'react-redux';
 import { login, register } from '../actions/UserActions';
 import { withRouter } from 'react-router-dom';
-
+import styled from 'styled-components';
 
 const UserAuthentication = (props) => {
     const [ userCredentials, setCredentials ] = useState({ email: '', password:'' })
@@ -36,24 +35,29 @@ const UserAuthentication = (props) => {
         };
     };
 
+
     return (
-        <Container>
-            <input type="email" required onChange={handleCredentials} />
-            <input type="password" required onChange={handleCredentials} />
-            <button onClick={handleLogin}>Login</button>
+        <AuthContainer>
+        <h1> Reactibook </h1>
+        <Divider />
+            <LabelInput>Login with your email and password
+                <Input type="email" placeholder="Enter your email" required onChange={handleCredentials} />
+                <Input type="password" placeholder="Enter your password" required onChange={handleCredentials} />
+                </LabelInput>
+            <PrimaryBtn style={{margin: "0", width: "10vw"}} onClick={handleLogin}>Login</PrimaryBtn>
 
-            <input type="text" name="username" required onChange={handleNewCredentials} />
-            <input type="email" name="email" required onChange={handleNewCredentials} />
-            <input type="password" name="password" required onChange={handleNewCredentials} />
-            <button onClick={handleRegister}>Register</button>
+            <Divider />
 
+            <LabelInput>Register to Reactibook
+                <Input type="text" name="username" placeholder="Enter your username" required onChange={handleNewCredentials} />
+                <Input type="email" name="email" placeholder="Enter your email" required onChange={handleNewCredentials} />
+                <Input type="password" name="password" placeholder="Enter your password" required onChange={handleNewCredentials} />
+            </LabelInput>
+            <PrimaryBtn style={{margin: "0", width: "10vw"}} onClick={handleRegister}>Register</PrimaryBtn>
 
+            <Divider />
 
-            <p style={{fontWeight: 'bold'}}>User Auth is under construction</p>
-            <p>but you can go to</p>
-            <Link to="/newsfeed" style={{textDecoration: 'none', color: 'white'}}><PrimaryBtn style={{width: '10vw'}}>newsfeed</PrimaryBtn></Link>
-            <p>in the meantime</p>
-        </Container>
+        </AuthContainer>
     );
 };
 

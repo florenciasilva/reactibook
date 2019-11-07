@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import moment from 'moment';
-import { Card, Content, Date, PrimaryBtn, Wrapper, DeleteBtn, EditBtn, Divider, EditInput, SendEditBtn, PostContainer} from '../styles';
+import { Card, Content, Date, ColumnContainer, Wrapper, TransparentBtn, SecondaryBtn, Divider, EditInput, SendEditBtn } from '../styles';
 import { connect } from 'react-redux';
 import { editPost, getAllPosts, deletePost } from '../actions/PostActions';
 
@@ -39,7 +39,7 @@ const AllPosts = (props) => {
     return props.posts.map((post, i) => {
         console.log(post, '<- post', user, '<- user')
         return (
-            <PostContainer style={{display: post.privacy && post.friends !== user.email ? 'none' : 'flex'}} key={post._id}>
+            <ColumnContainer style={{display: post.privacy && post.friends !== user.email ? 'none' : 'flex'}} key={post._id}>
                 <Card  >
                     <Wrapper>
                         <p>{post.username}</p>
@@ -49,13 +49,12 @@ const AllPosts = (props) => {
                     <EditInput id={i} placeholder={post.content} onChange={handleOnChange} style={{display: editElements === i ? 'flex' : 'none'}} />
                     <SendEditBtn style={{display: editElements === i ? 'flex' : 'none'}} onClick={(e) => handleSubmit(e, post._id, i)}> Send </SendEditBtn>
                     <Wrapper>
-                        <DeleteBtn style={{display: user.email === post.email ? 'flex' : 'none'}} onClick={() => handleDelete(post._id)}>Delete</DeleteBtn>
-                        <EditBtn style={{display: user.email === post.email ? 'flex' : 'none'}} onClick={() => handleEdit(post._id, i)}>Edit</EditBtn>
-                        <PrimaryBtn>Like</PrimaryBtn>
+                        <TransparentBtn style={{display: user.email === post.email ? 'flex' : 'none'}} onClick={() => handleDelete(post._id)}>Delete</TransparentBtn>
+                        <SecondaryBtn style={{display: user.email === post.email ? 'flex' : 'none'}} onClick={() => handleEdit(post._id, i)}>Edit</SecondaryBtn>
                     </Wrapper>
                 </Card>
                 <Divider />
-            </PostContainer >
+            </ColumnContainer >
         );
     });
     } else {
