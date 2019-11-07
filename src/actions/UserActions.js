@@ -1,7 +1,7 @@
 
 export const login = (userCredentials, location) => {
     return dispatch => {
-        return fetch('http://localhost:3000/user/' + userCredentials.email, {
+        return fetch('https://reactibook-api.herokuapp.com/user/' + userCredentials.email, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export const login = (userCredentials, location) => {
 
 export const register = (userCredentials, location) => {
     return dispatch => {
-        return fetch('http://localhost:3000/newUser', {
+        return fetch('https://reactibook-api.herokuapp.com/newUser', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const addFriend = (newFriend, id) => {
     const payload = {_id: id, newFriend: newFriend}
     console.log(payload)
     return dispatch => {
-        return fetch('http://localhost:3000/addFriend/' + id, {
+        return fetch('https://reactibook-api.herokuapp.com/addFriend/' + id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
