@@ -3,9 +3,13 @@
 Red Social creada con ReactJS, Redux, Nodejs, Express y MongoDB hosteado con Netlify.
 
 https://reactibook.netlify.com/
+
 https://reactibook.netlify.com/
+
 https://reactibook.netlify.com/
+
 https://reactibook.netlify.com/
+
 
 ## Funcionalidades
 
