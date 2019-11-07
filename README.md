@@ -6,9 +6,9 @@ https://reactibook-6fbc4.firebaseapp.com/
 
 https://reactibook-6fbc4.firebaseapp.com/ 
 
-https://reactibook-6fbc4.firebaseapp.c
+https://reactibook-6fbc4.firebaseapp.com/
 
-https://reactibook-6fbc4.firebaseapp.c
+https://reactibook-6fbc4.firebaseapp.com/
 
 
 ## Funcionalidades
